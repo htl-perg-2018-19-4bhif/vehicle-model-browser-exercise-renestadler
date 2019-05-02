@@ -1,0 +1,34 @@
+<select (change)="dataChange()" [(ngModel)]="year">
+  <option>NONE</option>
+  <option *ngFor="let year of years">
+    {{year}}
+  </option>
+</select>
+
+<select (change)="dataChange()" [(ngModel)]="make">
+  <option>NONE</option>
+  <option *ngFor="let make of makes">
+    {{make}}
+  </option>
+</select>
+
+<button (click)="dataChange()">Refresh</button>
+
+<table>
+  <thead>
+    <tr>
+      <th>Year</th><th>Make</th><th>Model</th>
+    </tr>
+    <tr *ngFor="let res of result">
+      <td>
+        {{res.year}}
+      </td>
+      <td>
+        {{res.make}}
+      </td>
+      <td>
+        {{res.model}}
+      </td>
+    </tr>
+  </thead>
+</table>
