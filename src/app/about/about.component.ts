@@ -7,7 +7,7 @@ import { LoremIpsum } from 'lorem-ipsum';
   styleUrls: ['./about.component.css']
 })
 export class AboutComponent implements OnInit {
-  public loremIpsum = "";
+  public loremIpsum = '';
 
   constructor() {
     const lorem = new LoremIpsum();

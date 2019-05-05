@@ -77,12 +77,12 @@ export class ModulesComponent implements OnInit {
   processInput() {
     const name = /[A-Za-z][A-Za-z -]+[A-Za-z]/g;
     const year = /[0-9]+/g;
-    let yearRes = year.exec(this.input);
-    let nameRes = name.exec(this.input);
-    let yearFilter: number = yearRes == null ? NaN : parseInt(yearRes.shift());
-    let nameFilter: string = nameRes == null ? undefined : nameRes.shift();
+    const yearRes = year.exec(this.input);
+    const nameRes = name.exec(this.input);
+    const yearFilter: number = yearRes == null ? NaN : parseInt(yearRes.shift());
+    const nameFilter: string = nameRes == null ? undefined : nameRes.shift();
     if (!isNaN(yearFilter)) {
-      let filteredYears = this.years.filter((a) => (a == yearFilter));
+      const filteredYears = this.years.filter((a) => (a === yearFilter));
       if (filteredYears.length > 0) {
         this.year = filteredYears[0];
       } else {
@@ -92,7 +92,7 @@ export class ModulesComponent implements OnInit {
       this.year = NaN;
     }
     if (nameFilter !== undefined) {
-      let filteredMakes = this.makes.filter((a) => (a.toLowerCase() === nameFilter.toLowerCase()));
+      const filteredMakes = this.makes.filter((a) => (a.toLowerCase() === nameFilter.toLowerCase()));
       if (filteredMakes.length > 0) {
         this.make = filteredMakes[0];
       } else {
@@ -109,7 +109,7 @@ export class ModulesComponent implements OnInit {
       this.curSub.unsubscribe();
     }
     this.curSub = changeChecker.subscribe(x => {
-      console.log("change");
+      console.log('change');
       this.dataChange();
     });
   }

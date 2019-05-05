@@ -6,8 +6,8 @@ import {
   MatTableModule,
   MatSelectModule,
   MatIconModule
-} from '@angular/material'; 
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
+} from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
