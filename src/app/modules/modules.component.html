@@ -1,34 +1,45 @@
-<select (change)="dataChange()" [(ngModel)]="year">
-  <option>NONE</option>
-  <option *ngFor="let year of years">
-    {{year}}
-  </option>
-</select>
+<mat-form-field>
+  <mat-label>Enter filter Condition:</mat-label>
+  <input matInput type="text" (input)="processInput()" [(ngModel)]="input">
+</mat-form-field>
 
-<select (change)="dataChange()" [(ngModel)]="make">
-  <option>NONE</option>
-  <option *ngFor="let make of makes">
-    {{make}}
-  </option>
-</select>
+<mat-table [dataSource]="result">
 
-<button (click)="dataChange()">Refresh</button>
+  <ng-container matColumnDef="year">
+    <mat-header-cell *matHeaderCellDef> Year </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.year}} </mat-cell>
+  </ng-container>
 
-<table>
-  <thead>
-    <tr>
-      <th>Year</th><th>Make</th><th>Model</th>
-    </tr>
-    <tr *ngFor="let res of result">
-      <td>
-        {{res.year}}
-      </td>
-      <td>
-        {{res.make}}
-      </td>
-      <td>
-        {{res.model}}
-      </td>
-    </tr>
-  </thead>
-</table>
+  <ng-container matColumnDef="make">
+    <mat-header-cell *matHeaderCellDef> Make </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.make}} </mat-cell>
+
+  </ng-container>
+
+  <ng-container matColumnDef="model">
+    <mat-header-cell *matHeaderCellDef> Model </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.model}} </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+
+<div style="text-align: center;">
+  <button mat-button [disabled]="curOffset<=0" (click)="prev()">
+    <mat-icon>keyboard_arrow_left</mat-icon>
+  </button>
+
+  <mat-form-field>
+    <mat-label>Elements per page:</mat-label>
+    <mat-select [(value)]="elems" (valueChange)="change()">
+      <mat-option *ngFor="let numElement of numElements" [value]="numElement">
+        {{numElement}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-button [disabled]="disableNext" (click)="next()">
+    <mat-icon>keyboard_arrow_right</mat-icon>
+  </button>
+</div>
